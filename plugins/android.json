@@ -1,0 +1,40 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    },
+    "com.outsystems.mobile.stetho": {
+      "PACKAGE_NAME": "io.oracle.opname"
+    }
+  },
+  "dependent_plugins": {}
+}

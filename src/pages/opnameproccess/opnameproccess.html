@@ -1,0 +1,211 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title id="title">Opname Proccess</ion-title>
+    <ion-searchbar id="searchitem" #search style="display: none;" [(ngModel)]="searchitem" placeholder="Input item" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar id="scansubinvandlocator" #searchcsub style="display: none;" [(ngModel)]="searchsubandlocator" placeholder="Scan Subinventory and Locator" (ionInput)="getSubInvandLocator($event)"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openListOpname()">
+        <ion-icon md="list-outline"></ion-icon>
+        <ion-badge mode="ios" color="goldenrod" item-end>{{count_opname_id}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <!-- <div *ngIf="afterAddItem">
+    <ion-card class="azz-card">
+      <ion-item no-lines>
+        <ion-label style="padding-top: 8px;">
+          <p style="color: grey;">F0120002</p>
+          <h3><b>MIRANDA HAIR COLOR BLUE30 NEW KOKO ASD</b></h3>
+          <p style="color: grey;">12 Pcs | RG : 2020-01-01 | Expr : 2020-12-31</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div> -->
+
+  <ion-list no-lines>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Opname Date</ion-label>
+          <ion-datetime (ionBlur)="selectDate()" displayFormat="YYYY-MM-DD" pickerFormat="DD MM YYYY" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Item Code</ion-label>
+          <ion-input disabled [(ngModel)]="itemcode"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Item Name</ion-label>
+          <ion-input disabled [(ngModel)]="itemname"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Lot Number</ion-label>
+          <ion-input disabled [(ngModel)]="lot"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>RG Date</ion-label>
+          <ion-input disabled [(ngModel)]="rgdate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Expired Date</ion-label>
+          <ion-input disabled [(ngModel)]="exprdate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Created Date</ion-label>
+          <ion-input disabled [(ngModel)]="opnamedate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding>
+      <ion-col>
+        <button ion-button block class="azz-button" color="goldenrod" (click)="scanSubinvAndLocator()">Scan Sub Inventory & Locator</button>
+      </ion-col>
+    </ion-row>
+
+    <br>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Sub Inventory</ion-label>
+          <ion-input disabled type="text" placeholder="search sub inventory" [(ngModel)]="codesubinv">{{codesubinv}}
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 padding>
+        <button ion-button round color="danger" (click)="gotoSearchSubInventory()" clear block icon-only>
+          <ion-icon md="search-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Locator</ion-label>
+          <ion-input disabled type="text" placeholder="input locator" [(ngModel)]="codelocator">{{codelocator}}
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 padding>
+        <button ion-button round color="danger" clear block icon-only (click)="getLocatorOption()">
+          <ion-icon md="search-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Quantity ({{uom}})</ion-label>
+          <ion-input disabled class="qty" type="number" placeholder="input qty" [(ngModel)]="quantity"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 padding>
+        <button ion-button round color="danger" (click)="inputQty()" clear block icon-only>
+          <ion-icon md="create-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding>
+      <ion-col>
+        <button ion-button block class="azz-button" color="goldenrod" [disabled]="!codesubinv" (click)="insertOpnameDetail()">Add Item</button>
+      </ion-col>
+      <!-- <ion-col>
+        <button ion-button block class="azz-button" color="primary">Submit</button>
+      </ion-col> -->
+    </ion-row>
+    <ion-row padding>
+      <ion-col>
+        <button ion-button block class="azz-button-noshadow" clear (click)="gotoDashboard()">Back to Dashboard</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+
+  <!-- 
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Sub Inventory</ion-label>
+          <ion-input (click)="gotoSearchSubInventory()" disabled type="text" placeholder="search sub inventory" [(ngModel)]="codesubinv">{{codesubinv}}</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Locator</ion-label>
+          <ion-input type="text" placeholder="input locator"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 padding>
+        <button ion-button round color="danger" clear block icon-only>
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Quantity ({{uom}})</ion-label>
+          <ion-input class="qty" type="number" placeholder="input qty"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row> 
+
+    <ion-item></ion-item>
+
+  </ion-list> -->
+
+</ion-content>
+
+<!-- <ion-footer style="background-color: white">
+
+  <ion-list>
+    
+
+  </ion-list>
+
+</ion-footer> -->

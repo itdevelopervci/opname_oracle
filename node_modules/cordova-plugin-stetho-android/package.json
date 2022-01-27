@@ -1,0 +1,57 @@
+{
+  "_from": "cordova-plugin-stetho-android",
+  "_id": "cordova-plugin-stetho-android@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-Bhfmg6wJBJBnUDiYLoqf7QH8cwM=",
+  "_location": "/cordova-plugin-stetho-android",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-stetho-android",
+    "name": "cordova-plugin-stetho-android",
+    "escapedName": "cordova-plugin-stetho-android",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-stetho-android/-/cordova-plugin-stetho-android-0.0.1.tgz",
+  "_shasum": "0617e683ac090490675038982e8a9fed01fc7303",
+  "_spec": "cordova-plugin-stetho-android",
+  "_where": "E:\\PROJECT\\opname",
+  "author": {
+    "name": "OutSystems - Mobility Experts"
+  },
+  "bugs": {
+    "url": "https://github.com/OutSystems/cordova-plugin-stetho-android/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com.outsystems.mobile.stetho",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Plugin to integrate with Stetho a debug bridge for Android applications",
+  "homepage": "https://github.com/OutSystems/cordova-plugin-stetho-android#readme",
+  "keywords": [
+    "cordova",
+    "stetho",
+    "debug bridge",
+    "android",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "MIT License",
+  "name": "cordova-plugin-stetho-android",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OutSystems/cordova-plugin-stetho-android.git"
+  },
+  "version": "0.0.1"
+}

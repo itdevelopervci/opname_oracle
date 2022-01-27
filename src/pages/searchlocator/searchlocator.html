@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar #search placeholder="search locator" (input)="getItems($event)"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="getDismiss(false)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list *ngIf=" val != '' ">
+    <ion-item *ngFor="let item of items | slice:0:100; let i=index" (click)="itemSelected(item.Locator_code,item.Locator_Id)">
+      {{ item.Locator_code }}
+      <p style="word-wrap: break-word;">{{ item.Subinventory_code }}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

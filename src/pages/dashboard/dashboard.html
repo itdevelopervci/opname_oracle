@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar padding>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentActionSheet()">
+        <ion-icon md="menu-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-searchbar [(ngModel)]="searchitem" #search placeholder="Use scanner flash" (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="azz-card-noshadow">
+    <ion-card-header>
+      <!-- <ion-item style="margin-top: 0%; margin-bottom: 7%;">
+        <ion-icon (click)="presentActionSheet()" md="menu-outline" color="primary" item-end></ion-icon>
+      </ion-item> -->
+      <ion-note item-end>
+        {{todaydate | date:'EEEE, dd MMMM yyyy'}}
+      </ion-note><br><br>
+      <h2>
+        <b>{{full_name}}</b>
+        <p>{{jabatan}}</p>
+      </h2>
+    </ion-card-header>
+    <ion-card-content>
+      <button class="azz-button-noshadow" color="goldenrod" block ion-button icon-end (click)="getCodeItem()">
+        Scan QR
+        <ion-icon md="qr-code-outline"></ion-icon>
+      </button>
+      <br>
+      <button class="azz-button-noshadow" color="primary" block ion-button icon-end (click)="flashScan()">
+        Flash Scan
+        <ion-icon md="flash-outline"></ion-icon>
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+  
+  <div *ngIf="totalpending">
+    <ion-list>
+      <ion-item>
+        <p style="font-size: 18px; font-weight: 700;">Pending Opname ({{totalpending}})</p>
+        <ion-note tappable style="font-size: 13px; color: blue;" (click)="sendAllPending()" item-end>
+          Send All
+        </ion-note>
+      </ion-item>
+    </ion-list>
+
+    <div>
+      <ion-card class="azz-card" *ngFor="let item of opname_item_arr">
+        <ion-item no-lines (click)="openListDetail(item.opname_id)">
+          <ion-label style="padding-top: 8px;">
+              <h5 style="color: grey;">{{ item.count_date1 | date:'dd-MMMM-yyyy'}}</h5>
+              <h2><b>{{ item.opname_id }}</b></h2>
+          </ion-label>
+          <ion-note item-end><p style="color: orangered;">{{ item.tot_item }} Items</p></ion-note>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

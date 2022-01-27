@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Opname Oracle
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentActionSheet()">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Opname Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="opnamedate" readonly></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Sub Inventory</ion-label>
+        <ion-input clearInput="true" clearOnEdit="true" type="text" placeholder="search inventory" (input)="getItems($event)" [(ngModel)]="selected"></ion-input>
+        <!-- <p>Barang Dalam Perjalan CWH ke Cabang Regional Barat</p> -->
+      </ion-item>
+      <ion-list *ngIf=" val != '' ">
+        <button ion-item *ngFor="let item of items" (click)="itemSelected(item.Subinvetory_Code)">
+          {{ item.Subinvetory_Code }}
+          <p>{{ item.Subinventory_name }}</p>
+        </button>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Locator</ion-label>
+        <ion-input clearInput="true" clearOnEdit="true" type="text" placeholder="search locator" (input)="getItems_($event)"></ion-input>
+      </ion-item>
+      <ion-list *ngIf=" val != '' ">
+        <button ion-item *ngFor="let itemasd of itemsasd" (click)="itemSelected(item)">
+          {{ itemasd }}
+        </button>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Item</ion-label>
+        <ion-input type="text" placeholder="search item" [(ngModel)]="scannedItemCode"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-3 padding>
+      <button ion-button round clear block icon-only color="danger" (click)="getCodeItem()">
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Lot</ion-label>
+        <ion-input type="text" placeholder="input lot"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-3 padding>
+      <button ion-button round color="danger" clear block icon-only>
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Exp Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="expdate"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Quantity ({{qty_type}})</ion-label>
+        <ion-input class="qty" type="decimal" placeholder="{{qty_type}}"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Status</ion-label>
+        <ion-select [(ngModel)]="status" interface="popover">
+          <ion-option value="nes" selected>Same on hand</ion-option>
+          <ion-option value="n64">Not same on hand</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <br>
+
+  <div padding>
+    <button ion-button block class="submit" color="goldenrod">Submit</button>
+  </div>
+
+  <!-- <div padding>
+    <ion-chip color="dark" tappable>
+      <ion-label color="goldenrod">Secondary w/ Dark label</ion-label>
+    </ion-chip>
+  </div> -->
+
+
+
+</ion-content>

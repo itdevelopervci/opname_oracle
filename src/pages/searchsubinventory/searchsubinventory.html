@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar #search placeholder="search subinventory" (input)="getItems($event)"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="getDismiss(false)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list *ngIf=" val != '' ">
+    <ion-item *ngFor="let item of items" (click)="itemSelected(item.Subinvetory_Code,item.Subinventory_name)">
+      {{ item.Subinvetory_Code }}
+      <p style="word-wrap: break-word;">{{ item.Subinventory_name }}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

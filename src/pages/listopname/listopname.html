@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>List Opname</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="listopname">
+      <ion-segment-button value="pending">
+        Local
+      </ion-segment-button>
+      <ion-segment-button value="sent" (click)="getOpnameDataServer()">
+        Server
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div [ngSwitch]="listopname">
+    <ion-list *ngSwitchCase="'pending'">
+
+      <div *ngIf="totalpending">
+        <ion-list>
+          <ion-item>
+            <p style="font-size: 18px; font-weight: 700;">Pending Opname ({{totalpending}})</p>
+            <ion-note tappable style="font-size: 13px; color: blue;" (click)="sendAllPending()" item-end>
+              Send All
+            </ion-note>
+          </ion-item>
+        </ion-list>
+
+        <div>
+          <ion-card class="azz-card" *ngFor="let item of opname_item_arr">
+            <ion-item no-lines (click)="openListDetail(item.opname_id)">
+              <ion-label style="padding-top: 8px;">
+                  <h5 style="color: grey;">{{ item.count_date1 | date:'dd-MMMM-yyyy'}}</h5>
+                  <h2><b>{{ item.opname_id }}</b></h2>
+              </ion-label>
+              <ion-note item-end><p style="color: orangered;">{{ item.tot_item }} Items</p></ion-note>
+            </ion-item>
+          </ion-card>
+        </div>
+      </div>
+
+      <br>
+
+      <div>
+        <ion-list>
+          <ion-item>
+            <p style="font-size: 18px; font-weight: 700;">Send Opname ({{totalsend}})</p>
+            <!-- <ion-note tappable style="font-size: 13px; color: blue;" (click)="sendAllPending()" item-end>
+              Send All
+            </ion-note> -->
+          </ion-item>
+        </ion-list>
+
+        <div>
+          <ion-card class="azz-card" *ngFor="let item of opname_item_send_arr">
+            <ion-item no-lines (click)="openListDetail(item.opname_id)">
+              <ion-label style="padding-top: 8px;">
+                  <h5 style="color: grey;">{{ item.count_date1 | date:'dd-MMMM-yyyy'}}</h5>
+                  <h2><b>{{ item.opname_id }}</b></h2>
+              </ion-label>
+              <ion-note item-end><p style="color: orangered;">{{ item.tot_item }} Items</p></ion-note>
+            </ion-item>
+          </ion-card>
+        </div>
+      </div>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'sent'">
+      <div>
+        <ion-card class="azz-card" *ngFor="let item of get_data_opname">
+          <ion-item no-lines (click)="openListDetailOnServer(item.Opname_id)">
+            <ion-label style="padding-top: 8px;">
+                <h5 style="color: grey;">{{ item.Count_date1 | date:'dd-MMMM-yyyy'}}</h5>
+                <h2><b>{{ item.Opname_id }}</b></h2>
+            </ion-label>
+            <ion-note item-end><p style="color: orangered;">sent</p></ion-note>
+          </ion-item>
+        </ion-card>
+      </div>
+    </ion-list>
+
+  </div>
+
+  
+
+</ion-content>
